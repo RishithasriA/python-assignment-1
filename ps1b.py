@@ -1,8 +1,8 @@
-annual_salary=float(input("enter your starting annual salary:"))
-portion_saved=float(input("enter the pecent of your salary to save,as a decimal:"))
-total_cost=float(input('enter the cost of your dream house:'))
-semi_annual_raise=float(input("enter the semi annual raise,as adecimal:"))
-#down patment
+annual_salary=float(input("Enter your starting annual salary:"))
+portion_saved=float(input("Enter the pecent of your salary to save,as a decimal:"))
+total_cost=float(input('Enter the cost of your dream house:'))
+semi_annual_raise=float(input("Enter the semi annual raise,as adecimal:"))
+#down payment
 down_payment=0.25*total_cost 
 current_savings=0.0
 #current monthly salary
@@ -14,4 +14,5 @@ months=0
 while current_savings<down_payment:
     current_savings+=monthly_saving+(current_savings*r)
     months+=1
-print(f"number of months:{months}")
+
+print(f"Number of months:{months}")
