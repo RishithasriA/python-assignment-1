@@ -6,11 +6,13 @@ semi_annual_raise = 0.07
 r = 0.04 / 12
 months = 36
 
-low = 0.0
-high = 1.0
+# search between 0 and 10000 (represents 0.0000 to 1.0000)
+low = 0
+high = 10000
 steps = 0
+epsilon = 100
 
-# check possibility with 100% saving
+# ---------- check if possible ----------
 current_savings = 0.0
 temp_salary = annual_salary
 monthly_salary = temp_salary / 12
@@ -26,9 +28,12 @@ if current_savings < down_payment:
     print("It is not possible to pay the down payment in three years.")
 
 else:
+
     while True:
         steps += 1
-        mid_rate = (low + high) / 2
+
+        mid = (low + high) // 2
+        mid_rate = mid / 10000   # convert to decimal
 
         current_savings = 0.0
         temp_salary = annual_salary
@@ -42,13 +47,12 @@ else:
                 temp_salary *= (1 + semi_annual_raise)
                 monthly_salary = temp_salary / 12
 
-        if current_savings < down_payment:
-            low = mid_rate
-        else:
-            high = mid_rate
-
-        if abs(high - low) < 0.0001:
+        if abs(current_savings - down_payment) <= epsilon:
+            print(f"Best savings rate: {mid_rate:.4f}")
+            print(f"Steps in bisection search: {steps}")
             break
 
-    print(f"Best savings rate: {mid_rate:.4f}")
-    print(f"Steps in bisection search: {steps}")
+        elif current_savings < down_payment:
+            low = mid
+        else:
+            high = mid
