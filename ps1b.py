@@ -18,6 +18,8 @@ while current_savings<down_payment:
     if months%6==0:
         annual_salary+=annual_salary*semi_annual_raise
         monthly_salary=annual_salary/12
+        monthly_saving=portion_saved*monthly_salary
 print(f"Number of months:{months}")
+
 
 
